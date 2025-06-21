@@ -4,35 +4,51 @@
   <meta charset="UTF-8">
   <title>o gözler her şeye değer</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
       background: linear-gradient(135deg, #fce4ec, #f8bbd0);
       background-size: cover;
       background-repeat: no-repeat;
       font-family: 'Georgia', serif;
       color: #880e4f;
-      text-align: center;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
 
     h1 {
-      margin-top: 100px;
       font-size: 3em;
+      text-align: center;
+      z-index: 2;
+      position: relative;
     }
 
-    .flower, .heart {
+    .emoji {
       position: absolute;
       animation: float 10s linear infinite;
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
     @keyframes float {
       0% {
         transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
       }
       100% {
         transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
       }
     }
   </style>
@@ -40,23 +56,26 @@
 <body>
   <h1>o gözler her şeye değer</h1>
 
-  <!-- Müzik -->
-  <iframe style="display:none;" src="https://www.youtube.com/embed/R8LzAIX0zFg?autoplay=1&loop=1&playlist=R8LzAIX0zFg" allow="autoplay"></iframe>
-
-  <!-- Kalp ve Çiçek Efektleri -->
+  <!-- Çiçek ve Kalp Efektleri -->
   <script>
     const emojis = ['💐', '🌸', '💖', '🌹', '💞'];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
       const el = document.createElement('div');
-      el.className = 'flower';
+      el.className = 'emoji';
+      el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       el.style.left = Math.random() * 100 + 'vw';
       el.style.top = Math.random() * -100 + 'vh';
       el.style.fontSize = (Math.random() * 20 + 20) + 'px';
-      el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       el.style.animationDuration = (5 + Math.random() * 5) + 's';
       document.body.appendChild(el);
     }
   </script>
+
+  <!-- Müzik Otomatik (Duman - Elleri Ellerime) -->
+  <iframe style="display: none;" 
+    src="https://www.youtube.com/embed/R8LzAIX0zFg?autoplay=1&loop=1&playlist=R8LzAIX0zFg&mute=0" 
+    allow="autoplay" 
+    allowfullscreen>
+  </iframe>
 </body>
 </html>
-
