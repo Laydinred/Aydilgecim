@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>o gözler her şeye değer</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-
     html, body {
-      height: 100%;
-      width: 100%;
+      height: 100%; width: 100%;
       background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-      background-size: cover;
-      background-repeat: no-repeat;
       font-family: 'Georgia', serif;
       color: #880e4f;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
     }
-
     h1 {
       font-size: 3em;
-      text-align: center;
-      z-index: 2;
+      margin-bottom: 20px;
       position: relative;
+      z-index: 2;
     }
-
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color: #f48fb1;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+    }
+    button:hover {
+      background-color: #ec407a;
+    }
     .emoji {
       position: absolute;
       animation: float 10s linear infinite;
       opacity: 0.8;
     }
-
     @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <h1>o gözler her şeye değer</h1>
+  <button id="playBtn">Müziği Çal</button>
 
-  <!-- Çiçek ve Kalp Efektleri -->
   <script>
+    // Kalp ve çiçek efektleri
     const emojis = ['💐', '🌸', '💖', '🌹', '💞'];
     for (let i = 0; i < 40; i++) {
       const el = document.createElement('div');
@@ -69,12 +64,23 @@
       el.style.animationDuration = (5 + Math.random() * 5) + 's';
       document.body.appendChild(el);
     }
-  </script>
 
-  <!-- Müzik: Duman - Elleri Ellerime -->
-  <iframe style="display:none;" 
-    src="https://www.youtube.com/embed/jFwc0Vez2ck?autoplay=1&loop=1&playlist=jFwc0Vez2ck&mute=0" 
-    allow="autoplay">
-  </iframe>
+    // YouTube iframe, başlangıçta görünmez
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.width = '0';
+    iframe.height = '0';
+    iframe.src = 'https://www.youtube.com/embed/jFwc0Vez2ck?loop=1&playlist=jFwc0Vez2ck&autoplay=1&mute=0';
+    iframe.allow = 'autoplay';
+    document.body.appendChild(iframe);
+
+    // Butona tıklanınca müziği başlat ve iframe görünür yap
+    document.getElementById('playBtn').addEventListener('click', () => {
+      iframe.style.display = 'block';
+      iframe.width = '300';
+      iframe.height = '150';
+      document.getElementById('playBtn').style.display = 'none'; // butonu gizle
+    });
+  </script>
 </body>
 </html>
